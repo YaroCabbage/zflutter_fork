@@ -26,11 +26,8 @@ dependencies:
 
   zflutter:
   #  path: '../../zflutter/'
-  modal_bottom_sheet: ^0.1.5
-  audioplayers:
-    git:
-      url: https://github.com/jamesblasco/audioplayers
-      ref: seek_web
+  modal_bottom_sheet: ^2.0.1
+  audioplayers: ^0.20.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

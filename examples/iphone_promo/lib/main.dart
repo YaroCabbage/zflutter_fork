@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         .setUrl(audioUrl)
         .then((value) => setState(() => loading = false));
     audioPlayer.onPlayerCompletion.listen((event) {
-      if (audioPlayer.state == AudioPlayerState.COMPLETED) stop();
+      if (audioPlayer.state == PlayerState.COMPLETED) stop();
     });
 
 
@@ -310,7 +310,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     if (animationController.value == 1) await stop();
 
     try {
-      if (audioPlayer.state != AudioPlayerState.PLAYING) {
+      if (audioPlayer.state != PlayerState.PLAYING) {
         audioPlayer.resume();
         animationController.forward();
         buttonController.forward();

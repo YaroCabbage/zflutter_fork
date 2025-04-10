@@ -1,16 +1,13 @@
 import 'dart:ui';
 
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:flutter/rendering.dart';
 
 class PhotoShareBottomSheet extends StatelessWidget {
-  final ScrollController scrollController;
-
-  const PhotoShareBottomSheet({Key key, this.scrollController})
-      : super(key: key);
+  const PhotoShareBottomSheet({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +23,6 @@ class PhotoShareBottomSheet extends StatelessWidget {
               appBar: appBar(context),
               body: CustomScrollView(
                 physics: ClampingScrollPhysics(),
-                controller: scrollController,
                 slivers: <Widget>[
                   SliverSafeArea(
                     bottom: false,

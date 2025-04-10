@@ -24,8 +24,8 @@ class _ModalBottomSheetExampleState extends State<ModalBottomSheetExample> {
         expand: true,
         context: context,
         backgroundColor: Colors.transparent,
-        builder: (context, scrollController) => Close(
-          child: PhotoShareBottomSheet(scrollController: scrollController),
+        builder: (context) => Close(
+          child: PhotoShareBottomSheet(),
         ),
       );
     });
@@ -78,8 +78,7 @@ class _ModalBottomSheetExampleState extends State<ModalBottomSheetExample> {
                 expand: true,
                 context: context,
                 backgroundColor: Colors.transparent,
-                builder: (context, scrollController) =>
-                    PhotoShareBottomSheet(scrollController: scrollController),
+                builder: (context) => PhotoShareBottomSheet(),
               );
             },
           ),
