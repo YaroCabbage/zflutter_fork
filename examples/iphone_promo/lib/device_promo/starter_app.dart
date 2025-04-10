@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
           children: [
             Text(
               'Headline',
-              style: textTheme.headline3.copyWith(
+              style: textTheme.headline3!.copyWith(
                 color: colorScheme.onSecondary,
               ),
             ),
@@ -142,7 +142,7 @@ class HomePage extends StatelessWidget {
 
 class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AdaptiveAppBar({
-    Key key,
+    Key? key,
     this.isDesktop = false,
   }) : super(key: key);
 
@@ -167,7 +167,7 @@ class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                 margin: const EdgeInsetsDirectional.fromSTEB(72, 0, 0, 22),
                 child: Text(
                   'Title',
-                  style: themeData.textTheme.headline6.copyWith(
+                  style: themeData.textTheme.headline6!.copyWith(
                     color: themeData.colorScheme.onPrimary,
                   ),
                 ),

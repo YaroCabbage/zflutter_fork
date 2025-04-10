@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -49,12 +49,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  AudioPlayer audioPlayer;
-  AnimationController animationController;
+  late AudioPlayer audioPlayer;
+  AnimationController? animationController;
 
-  AnimationController buttonController;
+  late AnimationController buttonController;
 
-  double get seconds => animationController.value * totalSecs;
+  double get seconds => animationController!.value * totalSecs;
 
   Animation get fadeInAnimation => CurvedAnimation(
         curve: Interval(
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           3.4 / totalSecs,
           curve: Curves.easeInOutCirc,
         ),
-        parent: animationController,
+        parent: animationController!,
       );
 
   Animation get rotationAnimation => CurvedAnimation(
@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           12.5 / totalSecs,
           curve: Curves.easeOutCirc,
         ),
-        parent: animationController,
+        parent: animationController!,
       );
 
   Animation get rotationAroundItselfAnimation => CurvedAnimation(
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           13 / totalSecs,
           curve: Curves.easeOut,
         ),
-        parent: animationController,
+        parent: animationController!,
       );
 
   Animation get unlockPhone => CurvedAnimation(
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           14.0 / totalSecs,
           14.4 / totalSecs,
         ),
-        parent: animationController,
+        parent: animationController!,
       );
 
   Animation get lastPhone => CurvedAnimation(
@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           23.6 / totalSecs,
           curve: Curves.easeInOut,
         ),
-        parent: animationController,
+        parent: animationController!,
       );
 
   final totalSecs = 27;
@@ -113,9 +113,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     animationController = AnimationController(
         vsync: this, duration: Duration(seconds: totalSecs));
 
-    animationController.addListener(() {
+    animationController!.addListener(() {
       setState(() {
-        if (animationController.value == 1)
+        if (animationController!.value == 1)
           buttonController.animateBack(0);
         else
           buttonController.forward();
@@ -159,11 +159,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8.0),
                 ),
                 child: Slider(
-                    value: animationController.value,
+                    value: animationController!.value,
                     min: 0.0,
                     max: 1,
                     onChanged: (double value) =>
-                        {animationController.value = value},
+                        {animationController!.value = value},
                     onChangeStart: (double value) {
                       setState(() {
                         audioPlayer.pause();
@@ -180,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 icon: Icon(
                   Icons.stop,
                 ),
-                onPressed: animationController.value > 0 ? stop : null),
+                onPressed: animationController!.value > 0 ? stop : null),
             if (loading)
               Container(
                 padding: EdgeInsets.all(12),
@@ -221,10 +221,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       child: Container(
                         color: Colors.black.withOpacity(0.92),
                         child: AnimatedBuilder(
-                          animation: animationController,
+                          animation: animationController!,
                           builder: (context, _) {
                             final seconds =
-                                animationController.value * totalSecs;
+                                animationController!.value * totalSecs;
                             return Stack(
                               fit: StackFit.expand,
                               children: [
@@ -291,7 +291,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   void dispose() {
     audioPlayer.stop();
-    animationController.dispose();
+    animationController!.dispose();
     buttonController.dispose();
     super.dispose();
   }
@@ -301,21 +301,21 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     await audioPlayer
         .seek(Duration(milliseconds: (progress * totalSecs * 1000).toInt()));
     if (!kIsWeb) audioPlayer.resume();
-    animationController.stop();
-    animationController.forward(from: progress);
+    animationController!.stop();
+    animationController!.forward(from: progress);
     buttonController.forward();
   }
 
   void updateAnimation() async {
-    if (animationController.value == 1) await stop();
+    if (animationController!.value == 1) await stop();
 
     try {
       if (audioPlayer.state != PlayerState.PLAYING) {
         audioPlayer.resume();
-        animationController.forward();
+        animationController!.forward();
         buttonController.forward();
       } else {
-        animationController.stop();
+        animationController!.stop();
         audioPlayer.pause();
         buttonController.animateBack(0);
       }
@@ -328,7 +328,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     flutterPageIsVisible = false;
     try {
       setState(() {
-        animationController.value = 0;
+        animationController!.value = 0;
       });
       audioPlayer.stop();
       buttonController.animateBack(0);
@@ -368,60 +368,60 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 }
 
 class AnimatedIllustration extends StatelessWidget {
-  final AnimationController controller;
+  final AnimationController? controller;
 
-  final int totalSecs;
+  final int? totalSecs;
 
   const AnimatedIllustration({
-    Key key,
+    Key? key,
     this.controller,
     this.totalSecs,
   }) : super(key: key);
 
-  double get seconds => controller.value * totalSecs;
+  double get seconds => controller!.value * totalSecs!;
 
   Animation get fadeInAnimation => CurvedAnimation(
         curve: Interval(
-          0 / totalSecs,
-          3.4 / totalSecs,
+          0 / totalSecs!,
+          3.4 / totalSecs!,
           curve: Curves.easeInOutCirc,
         ),
-        parent: controller,
+        parent: controller!,
       );
 
   Animation get rotationAnimation => CurvedAnimation(
         curve: Interval(
-          8.1 / totalSecs,
-          12.5 / totalSecs,
+          8.1 / totalSecs!,
+          12.5 / totalSecs!,
           curve: Curves.easeOutCirc,
         ),
-        parent: controller,
+        parent: controller!,
       );
 
   Animation get rotationAroundItselfAnimation => CurvedAnimation(
         curve: Interval(
-          12 / totalSecs,
-          13 / totalSecs,
+          12 / totalSecs!,
+          13 / totalSecs!,
           curve: Curves.easeOut,
         ),
-        parent: controller,
+        parent: controller!,
       );
 
   Animation get unlockPhone => CurvedAnimation(
         curve: Interval(
-          14.0 / totalSecs,
-          14.4 / totalSecs,
+          14.0 / totalSecs!,
+          14.4 / totalSecs!,
         ),
-        parent: controller,
+        parent: controller!,
       );
 
   Animation get lastPhone => CurvedAnimation(
         curve: Interval(
-          22.3 / totalSecs,
-          23.6 / totalSecs,
+          22.3 / totalSecs!,
+          23.6 / totalSecs!,
           curve: Curves.easeInOut,
         ),
-        parent: controller,
+        parent: controller!,
       );
 
   final bit = 1.80 / 5;

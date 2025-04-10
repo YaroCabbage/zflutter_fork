@@ -31,9 +31,9 @@ class IPhonePromo extends StatelessWidget {
   final Color backgroundColor;
 
   IPhonePromo(
-      {Key key, DeviceStyle style, this.progress = 1, Color backgroundColor})
+      {Key? key, DeviceStyle? style, this.progress = 1, Color? backgroundColor})
       : this.style = style ?? DeviceStyles.black,
-        this.backgroundColor = backgroundColor ?? style.backgroundColor,
+        this.backgroundColor = backgroundColor ?? style!.backgroundColor,
         super(key: key);
 
   @override
@@ -107,9 +107,9 @@ class IPhonePromoFinal extends StatelessWidget {
   final Color backgroundColor;
 
   IPhonePromoFinal(
-      {Key key, DeviceStyle style, this.progress = 1, Color backgroundColor})
+      {Key? key, DeviceStyle? style, this.progress = 1, Color? backgroundColor})
       : this.style = style ?? DeviceStyles.black,
-        this.backgroundColor = backgroundColor ?? style.backgroundColor,
+        this.backgroundColor = backgroundColor ?? style!.backgroundColor,
         super(key: key);
 
   @override
@@ -177,9 +177,9 @@ class IPhonePromoRotate extends StatelessWidget {
   final Color backgroundColor;
 
   IPhonePromoRotate(
-      {Key key, DeviceStyle style, this.progress = 1, Color backgroundColor})
+      {Key? key, DeviceStyle? style, this.progress = 1, Color? backgroundColor})
       : this.style = style ?? DeviceStyles.black,
-        this.backgroundColor = backgroundColor ?? style.backgroundColor,
+        this.backgroundColor = backgroundColor ?? style!.backgroundColor,
         super(key: key);
 
   @override
@@ -233,16 +233,16 @@ class IPhonePromoRotateItself extends StatelessWidget {
   final DeviceStyle style;
   final double progress;
   final Color backgroundColor;
-  final Widget child;
+  final Widget? child;
 
   IPhonePromoRotateItself(
-      {Key key,
-      DeviceStyle style,
+      {Key? key,
+      DeviceStyle? style,
       this.progress = 1,
-      Color backgroundColor,
+      Color? backgroundColor,
       this.child})
       : this.style = style ?? DeviceStyles.black,
-        this.backgroundColor = backgroundColor ?? style.backgroundColor,
+        this.backgroundColor = backgroundColor ?? style!.backgroundColor,
         super(key: key);
 
   @override
@@ -299,16 +299,16 @@ class SceneSide extends StatelessWidget {
   final DeviceStyle style;
   final double progress;
   final Color backgroundColor;
-  final Widget child;
+  final Widget? child;
 
   SceneSide(
-      {Key key,
-      DeviceStyle style,
+      {Key? key,
+      DeviceStyle? style,
       this.progress = 1,
-      Color backgroundColor,
+      Color? backgroundColor,
       this.child})
       : this.style = style ?? DeviceStyles.black,
-        this.backgroundColor = backgroundColor ?? style.backgroundColor,
+        this.backgroundColor = backgroundColor ?? style!.backgroundColor,
         super(key: key);
 
   @override
@@ -336,16 +336,16 @@ class IPhonePromoFlick extends StatelessWidget {
   final DeviceStyle style;
   final double progress;
   final Color backgroundColor;
-  final Widget child;
+  final Widget? child;
 
   IPhonePromoFlick(
-      {Key key,
-      DeviceStyle style,
+      {Key? key,
+      DeviceStyle? style,
       this.progress = 1,
-      Color backgroundColor,
+      Color? backgroundColor,
       this.child})
       : this.style = style ?? DeviceStyles.black,
-        this.backgroundColor = backgroundColor ?? style.backgroundColor,
+        this.backgroundColor = backgroundColor ?? style!.backgroundColor,
         super(key: key);
 
   @override
