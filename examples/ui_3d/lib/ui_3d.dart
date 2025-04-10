@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zflutter/zflutter.dart';
 
@@ -21,7 +20,7 @@ class Ui3D extends StatefulWidget {
 }
 
 class _ZUiState extends State<Ui3D> with TickerProviderStateMixin {
-  AnimationController animationController;
+  late AnimationController animationController;
 
   @override
   void initState() {
@@ -182,7 +181,7 @@ class ZFloatingButton extends StatelessWidget {
 class ZListTile extends StatelessWidget {
   final int index;
 
-  const ZListTile({Key key, this.index}) : super(key: key);
+  const ZListTile({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
