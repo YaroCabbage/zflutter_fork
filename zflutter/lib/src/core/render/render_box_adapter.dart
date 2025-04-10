@@ -24,11 +24,9 @@ class RenderZToBoxAdapter extends RenderZBox
     markNeedsLayout();
   }
 
-  RenderZToBoxAdapter({
-    double? width,
-    double? height,
-  })  : _width = width,
-        _height = height;
+  RenderZToBoxAdapter({double? width, double? height})
+    : _width = width,
+      _height = height;
 
   @override
   bool get isRepaintBoundary => true;
@@ -40,8 +38,10 @@ class RenderZToBoxAdapter extends RenderZBox
   @override
   void performLayout() {
     final ZParentData anchorParentData = parentData as ZParentData;
-    child!.layout(BoxConstraints.expand(height: height, width: width),
-        parentUsesSize: false);
+    child!.layout(
+      BoxConstraints.expand(height: height, width: width),
+      parentUsesSize: false,
+    );
     size = constraints.smallest;
 
     final x = width! / 2;
@@ -50,19 +50,28 @@ class RenderZToBoxAdapter extends RenderZBox
       ZMove.vector(ZVector.only(x: -x, y: -y)),
       ZLine.vector(ZVector.only(x: x, y: -y)),
       ZLine.vector(ZVector.only(x: x, y: y)),
-      ZLine.vector(ZVector.only(x: -x, y: y))
+      ZLine.vector(ZVector.only(x: -x, y: y)),
     ];
 
     origin = ZVector.zero;
 
     anchorParentData.transforms.reversed.forEach((matrix4) {
-      origin =
-          origin.transform(matrix4.translate, matrix4.rotate, matrix4.scale);
+      origin = origin.transform(
+        matrix4.translate,
+        matrix4.rotate,
+        matrix4.scale,
+      );
 
-      transformedPath = transformedPath
-          .map((e) =>
-              e.transform(matrix4.translate, matrix4.rotate, matrix4.scale))
-          .toList();
+      transformedPath =
+          transformedPath
+              .map(
+                (e) => e.transform(
+                  matrix4.translate,
+                  matrix4.rotate,
+                  matrix4.scale,
+                ),
+              )
+              .toList();
     });
 
     performSort();
@@ -95,7 +104,10 @@ class RenderZToBoxAdapter extends RenderZBox
     Matrix4 matrix = Matrix4.translationValues(0, 0, 0);
     anchorParentData.transforms.forEach((transform) {
       final matrix4 = Matrix4.translationValues(
-          transform.translate.x!, transform.translate.y!, transform.translate.z!);
+        transform.translate.x!,
+        transform.translate.y!,
+        transform.translate.z!,
+      );
 
       matrix4.rotateX(transform.rotate.x!);
       matrix4.rotateY(-transform.rotate.y!);
@@ -133,5 +145,12 @@ class RenderZToBoxAdapter extends RenderZBox
         childPaintBounds: context.estimatedBounds,
       );
     }
+  }
+
+  @override
+  Size computeDryLayout(BoxConstraints constraints) {
+    // Since sizedByParent is true, we simply return the biggest size allowed by constraints,
+    // which is consistent with the implementation in performResize
+    return constraints.biggest;
   }
 }

@@ -127,6 +127,13 @@ class RenderZMultiChildBox extends RenderZBox
       context.paintChild(child, childParentData.offset + offset);
     }
   }
+
+  @override
+  Size computeDryLayout(BoxConstraints constraints) {
+    // Since sizedByParent is true, we simply return the biggest size allowed by constraints,
+    // which is consistent with the implementation in performResize
+    return constraints.biggest;
+  }
 }
 
 /// Parent data for use with [ZRenderer].

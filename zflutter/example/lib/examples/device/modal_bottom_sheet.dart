@@ -24,9 +24,7 @@ class _ModalBottomSheetExampleState extends State<ModalBottomSheetExample> {
         expand: true,
         context: context,
         backgroundColor: Colors.transparent,
-        builder: (context, scrollController) => Close(
-          child: PhotoShareBottomSheet(scrollController: scrollController),
-        ),
+        builder: (context) => Close(child: PhotoShareBottomSheet()),
       );
     });
     Future.delayed(Duration(seconds: 9), () => showModal());
@@ -35,14 +33,12 @@ class _ModalBottomSheetExampleState extends State<ModalBottomSheetExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBar(context),
-        body: CupertinoPageScaffold(
-          child: Center(
-              child: Image.asset(
-            'assets/demo_image.jpeg',
-          )),
-        ),
-        bottomNavigationBar: bottomAppBar(context));
+      appBar: appBar(context),
+      body: CupertinoPageScaffold(
+        child: Center(child: Image.asset('assets/demo_image.jpeg')),
+      ),
+      bottomNavigationBar: bottomAppBar(context),
+    );
   }
 
   PreferredSizeWidget appBar(BuildContext context) {
@@ -50,15 +46,15 @@ class _ModalBottomSheetExampleState extends State<ModalBottomSheetExample> {
       middle: Column(
         children: <Widget>[
           Text('New York', style: TextStyle(fontWeight: FontWeight.normal)),
-          Text('1 February 11:45',
-              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 12))
+          Text(
+            '1 February 11:45',
+            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 12),
+          ),
         ],
       ),
       trailing: Text(
         'Edit',
-        style: TextStyle(
-          color: CupertinoTheme.of(context).primaryColor,
-        ),
+        style: TextStyle(color: CupertinoTheme.of(context).primaryColor),
       ),
     );
   }
@@ -69,17 +65,13 @@ class _ModalBottomSheetExampleState extends State<ModalBottomSheetExample> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           CupertinoButton(
-            child: Icon(
-              CupertinoIcons.share,
-              size: 28,
-            ),
+            child: Icon(CupertinoIcons.share, size: 28),
             onPressed: () {
               showCupertinoModalBottomSheet(
                 expand: true,
                 context: context,
                 backgroundColor: Colors.transparent,
-                builder: (context, scrollController) =>
-                    PhotoShareBottomSheet(scrollController: scrollController),
+                builder: (context) => PhotoShareBottomSheet(),
               );
             },
           ),
@@ -90,7 +82,7 @@ class _ModalBottomSheetExampleState extends State<ModalBottomSheetExample> {
           CupertinoButton(
             child: Icon(CupertinoIcons.delete, size: 28),
             onPressed: null,
-          )
+          ),
         ],
       ),
     );
@@ -101,6 +93,7 @@ class Close extends StatefulWidget {
   final Widget? child;
 
   const Close({Key? key, this.child}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => CloseState();
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:zflutter/src/core/render/render_box.dart';
 import 'package:zflutter/src/core/widgets/update_parent_data.dart';
 import 'package:zflutter/src/widgets/illustration.dart';
 
@@ -12,10 +10,9 @@ class ZTransform {
   ZVector translate;
   ZVector scale;
 
-  ZTransform(
-      {this.rotate = ZVector.zero,
-      this.translate = ZVector.zero,
-      this.scale = ZVector.identity});
+  ZTransform({this.rotate = ZVector.zero,
+    this.translate = ZVector.zero,
+    this.scale = ZVector.identity});
 }
 
 /// A zWidget that transforms a child in a 3D space.
@@ -56,7 +53,8 @@ class ZPositioned extends ZUpdateParentDataWidget<ZParentData> with ZWidget {
     double y = 1,
     double z = 1,
     required Widget child,
-  })  : this.scale = ZVector(x, y, z),
+  })
+      : this.scale = ZVector(x, y, z),
         this.rotate = ZVector.zero,
         this.translate = ZVector.zero,
         super(key: key, child: child);
@@ -67,7 +65,8 @@ class ZPositioned extends ZUpdateParentDataWidget<ZParentData> with ZWidget {
     double y = 0,
     double z = 0,
     required Widget child,
-  })  : this.scale = ZVector.identity,
+  })
+      : this.scale = ZVector.identity,
         this.rotate = ZVector.zero,
         this.translate = ZVector(x, y, z),
         super(key: key, child: child);
@@ -78,7 +77,8 @@ class ZPositioned extends ZUpdateParentDataWidget<ZParentData> with ZWidget {
     double y = 0,
     double z = 0,
     required Widget child,
-  })  : this.scale = ZVector.identity,
+  })
+      : this.scale = ZVector.identity,
         this.rotate = ZVector(x, y, z),
         this.translate = ZVector.zero,
         super(key: key, child: child);
@@ -95,8 +95,8 @@ class ZPositioned extends ZUpdateParentDataWidget<ZParentData> with ZWidget {
   final ZVector scale;
 
   @override
-  void updateParentData(
-      RenderObject renderObject, ZPositioned oldWidget, ZTransform transform) {
+  void updateParentData(RenderObject renderObject, ZPositioned oldWidget,
+      ZTransform transform) {
     assert(renderObject.parentData is ZParentData);
 
     final ZParentData? parentData = renderObject.parentData as ZParentData?;
@@ -140,7 +140,7 @@ class ZPositioned extends ZUpdateParentDataWidget<ZParentData> with ZWidget {
 
     if (needsLayout) {
       renderObject.markNeedsLayout();
-      final AbstractNode? targetParent = renderObject.parent;
+      final targetParent = renderObject.parent;
       if (targetParent is RenderObject) targetParent.markNeedsLayout();
     }
   }
@@ -175,7 +175,7 @@ class ZPositioned extends ZUpdateParentDataWidget<ZParentData> with ZWidget {
       }
     }
 
-    final AbstractNode? targetParent = renderObject.parent;
+    final targetParent = renderObject.parent;
     if (targetParent is RenderObject) targetParent.markNeedsLayout();
   }
 

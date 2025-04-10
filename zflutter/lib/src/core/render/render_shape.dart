@@ -1,11 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/rendering.dart';
 import 'package:zflutter/zflutter.dart';
 
 import '../core.dart';
-import '../path_command.dart';
-import '../renderer.dart';
 
 class RenderZShape extends RenderZBox {
   Color? _color;
@@ -72,6 +68,7 @@ class RenderZShape extends RenderZBox {
   }
 
   double? _sortValue;
+
   double? get sortValue => _sortValue;
 
   set sortValue(double? value) {
@@ -107,19 +104,19 @@ class RenderZShape extends RenderZBox {
     bool fill = false,
     double? stroke = 1,
     List<ZPathCommand> path = const [],
-  })  : assert(path != null),
-        assert(front != null),
-        assert(close != null),
-        assert(fill != null),
-        assert(stroke != null && stroke >= 0),
-        _stroke = stroke,
-        _visible = visible,
-        _backfaceColor = backfaceColor,
-        _front = front,
-        _close = close,
-        _fill = fill,
-        _color = color,
-        _path = path;
+  }) : assert(path != null),
+       assert(front != null),
+       assert(close != null),
+       assert(fill != null),
+       assert(stroke != null && stroke >= 0),
+       _stroke = stroke,
+       _visible = visible,
+       _backfaceColor = backfaceColor,
+       _front = front,
+       _close = close,
+       _fill = fill,
+       _color = color,
+       _path = path;
 
   @override
   bool get sizedByParent => true;
@@ -139,23 +136,35 @@ class RenderZShape extends RenderZBox {
 
     origin = ZVector.zero;
     anchorParentData.transforms.reversed.forEach((matrix4) {
-      origin =
-          origin.transform(matrix4.translate, matrix4.rotate, matrix4.scale);
+      origin = origin.transform(
+        matrix4.translate,
+        matrix4.rotate,
+        matrix4.scale,
+      );
     });
 
     _transformedFront = front;
     anchorParentData.transforms.reversed.forEach((matrix4) {
       _transformedFront = _transformedFront.transform(
-          matrix4.translate, matrix4.rotate, matrix4.scale);
+        matrix4.translate,
+        matrix4.rotate,
+        matrix4.scale,
+      );
     });
 
     normalVector = origin - _transformedFront;
     transformedPath = path;
     anchorParentData.transforms.reversed.forEach((matrix4) {
-      transformedPath = transformedPath!
-          .map((e) =>
-              e.transform(matrix4.translate, matrix4.rotate, matrix4.scale))
-          .toList();
+      transformedPath =
+          transformedPath!
+              .map(
+                (e) => e.transform(
+                  matrix4.translate,
+                  matrix4.rotate,
+                  matrix4.scale,
+                ),
+              )
+              .toList();
     });
 
     performPathCommands();
@@ -249,6 +258,13 @@ class RenderZShape extends RenderZBox {
     renderer.circle(point.x!, point.y!, radius);
     renderer.closePath();
     renderer.fill(color);
+  }
+
+  @override
+  Size computeDryLayout(BoxConstraints constraints) {
+    // Since sizedByParent is true, we simply return the biggest size allowed by constraints,
+    // which is consistent with the implementation in performResize
+    return constraints.biggest;
   }
 
   void render(ZRenderer renderer) {}
