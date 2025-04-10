@@ -91,7 +91,8 @@ class PhotoShareBottomSheet extends StatelessWidget {
                                         width: 60,
                                         decoration: BoxDecoration(
                                             image: DecorationImage(
-                                                image: AssetImage(app.imageUrl!),
+                                                image:
+                                                    AssetImage(app.imageUrl!),
                                                 fit: BoxFit.cover),
                                             color: Colors.white,
                                             borderRadius:
@@ -389,7 +390,7 @@ final actions2 = [
 extension ListUtils<T> on List<T> {
   List<T?> addItemInBetween<T>(T item) => this.length == 0
       ? this as List<T?>
-      : (this.fold([], ((r, element) => [...r, element as T, item]) as List<T?> Function(List<T?>, T))
+      : (this.fold([], ((r, element) => [...r, element as T, item]))
         ..removeLast());
 }
 
@@ -514,7 +515,8 @@ class _SliverGroupElement extends RenderObjectElement {
 
   @override
   void insertChildRenderObject(RenderObject child, int slot) {
-    final _RenderSliverGroup renderObject = this.renderObject as _RenderSliverGroup;
+    final _RenderSliverGroup renderObject =
+        this.renderObject as _RenderSliverGroup;
     if (slot == 0) renderObject.decoration = child as RenderBox?;
     if (slot == 1) renderObject.foregroundDecoration = child as RenderBox?;
     if (slot == 2) renderObject.child = child as RenderSliver?;
@@ -528,7 +530,8 @@ class _SliverGroupElement extends RenderObjectElement {
 
   @override
   void removeChildRenderObject(RenderObject child) {
-    final _RenderSliverGroup renderObject = this.renderObject as _RenderSliverGroup;
+    final _RenderSliverGroup renderObject =
+        this.renderObject as _RenderSliverGroup;
     if (renderObject.decoration == child) renderObject.decoration = null;
     if (renderObject.foregroundDecoration == child)
       renderObject.foregroundDecoration = null;
@@ -656,8 +659,8 @@ class _RenderSliverGroup extends RenderSliver with RenderSliverHelpers {
       result.add(decoration!.toDiagnosticsNode(name: 'decoration'));
     }
     if (foregroundDecoration != null) {
-      result.add(foregroundDecoration!.toDiagnosticsNode(
-          name: 'foreground_decoration'));
+      result.add(foregroundDecoration!
+          .toDiagnosticsNode(name: 'foreground_decoration'));
     }
     if (child != null) {
       result.add(child!.toDiagnosticsNode(name: 'child'));
@@ -707,7 +710,8 @@ class _RenderSliverGroup extends RenderSliver with RenderSliverHelpers {
     }
     // compute decoration offset
 
-    final SliverPhysicalParentData? headerParentData = decoration!.parentData as SliverPhysicalParentData?;
+    final SliverPhysicalParentData? headerParentData =
+        decoration!.parentData as SliverPhysicalParentData?;
     final SliverPhysicalParentData? foregroundParentData =
         foregroundDecoration!.parentData as SliverPhysicalParentData?;
     double scrollOffset = -constraints.scrollOffset;
@@ -743,7 +747,8 @@ class _RenderSliverGroup extends RenderSliver with RenderSliverHelpers {
   @override
   void applyPaintTransform(RenderObject child, Matrix4 transform) {
     assert(child != null);
-    final SliverPhysicalParentData childParentData = child.parentData as SliverPhysicalParentData;
+    final SliverPhysicalParentData childParentData =
+        child.parentData as SliverPhysicalParentData;
     childParentData.applyPaintTransform(transform);
   }
 
@@ -752,12 +757,14 @@ class _RenderSliverGroup extends RenderSliver with RenderSliverHelpers {
     if (geometry!.visible) {
       // paint decoration
       if (decoration != null) {
-        final SliverPhysicalParentData childParentData = decoration!.parentData as SliverPhysicalParentData;
+        final SliverPhysicalParentData childParentData =
+            decoration!.parentData as SliverPhysicalParentData;
         context.paintChild(decoration!, offset + childParentData.paintOffset);
       }
       // paint child
       if (child != null && child!.geometry!.visible) {
-        final SliverPhysicalParentData? childParentData = child!.parentData as SliverPhysicalParentData?;
+        final SliverPhysicalParentData? childParentData =
+            child!.parentData as SliverPhysicalParentData?;
         final PaintingContextCallback painter =
             (PaintingContext context, Offset offset) {
           context.paintChild(child!, offset);
