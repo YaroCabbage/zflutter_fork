@@ -56,15 +56,15 @@ class FlutterAnchor extends StatelessWidget {
 }
 
 class ZLineTop extends StatelessWidget {
-  final ZVector translate;
-  final ZVector bottomLeft;
-  final ZVector bottomRight;
-  final ZVector topRight;
-  final ZVector topLeft;
-  final double z;
-  final Color front;
-  final Color inside;
-  final Color side;
+  final ZVector? translate;
+  final ZVector? bottomLeft;
+  final ZVector? bottomRight;
+  final ZVector? topRight;
+  final ZVector? topLeft;
+  final double? z;
+  final Color? front;
+  final Color? inside;
+  final Color? side;
 
   ZLineTop(
       {this.translate,
@@ -83,10 +83,10 @@ class ZLineTop extends StatelessWidget {
     final height = 4.0;
 
     final frontZShape = ZShape(path: [
-      ZMove.vector(bottomLeft),
-      ZLine.vector(bottomRight),
-      ZLine.vector(topRight),
-      ZLine.vector(topLeft),
+      ZMove.vector(bottomLeft!),
+      ZLine.vector(bottomRight!),
+      ZLine.vector(topRight!),
+      ZLine.vector(topLeft!),
     ], color: front, fill: true, stroke: 2);
 
     final topZShape = ZGroup(sortMode: SortMode.update, children: [
@@ -94,12 +94,12 @@ class ZLineTop extends StatelessWidget {
         translate: ZVector.only(z: -stroke),
         child: ZShape(
           path: [
-            ZMove.vector(topRight),
-            ZLine.vector(topLeft),
-            ZLine.vector(topLeft.copyWith(z: -height)),
-            ZLine.vector(topRight.copyWith(z: -height)),
+            ZMove.vector(topRight!),
+            ZLine.vector(topLeft!),
+            ZLine.vector(topLeft!.copyWith(z: -height)),
+            ZLine.vector(topRight!.copyWith(z: -height)),
           ],
-          front: (topRight - topLeft).cross(ZVector.only(z: height)),
+          front: (topRight! - topLeft!).cross(ZVector.only(z: height)),
           fill: true,
           stroke: 2,
           color: side,
@@ -110,13 +110,13 @@ class ZLineTop extends StatelessWidget {
         translate: ZVector.only(y: -10),
         child: ZShape(
           path: [
-            ZMove.vector(topRight),
-            ZLine.vector(topLeft),
-            ZLine.vector(topLeft.copyWith(z: -height)),
-            ZLine.vector(topRight.copyWith(z: -height)),
+            ZMove.vector(topRight!),
+            ZLine.vector(topLeft!),
+            ZLine.vector(topLeft!.copyWith(z: -height)),
+            ZLine.vector(topRight!.copyWith(z: -height)),
           ],
           visible: false,
-          front: (topRight - topLeft).cross(ZVector.only(z: height)),
+          front: (topRight! - topLeft!).cross(ZVector.only(z: height)),
           fill: true,
           stroke: 2,
           color: side,
@@ -129,12 +129,12 @@ class ZLineTop extends StatelessWidget {
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(bottomLeft),
-          ZLine.vector(topLeft),
-          ZLine.vector(topLeft.copyWith(z: -height)),
-          ZLine.vector(bottomLeft.copyWith(z: -height)),
+          ZMove.vector(bottomLeft!),
+          ZLine.vector(topLeft!),
+          ZLine.vector(topLeft!.copyWith(z: -height)),
+          ZLine.vector(bottomLeft!.copyWith(z: -height)),
         ],
-        front: (bottomLeft - topLeft).cross(ZVector.only(z: -height)),
+        front: (bottomLeft! - topLeft!).cross(ZVector.only(z: -height)),
         fill: true,
         stroke: 2,
         color: side,
@@ -146,12 +146,12 @@ class ZLineTop extends StatelessWidget {
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(bottomRight),
-          ZLine.vector(bottomLeft),
-          ZLine.vector(bottomLeft.copyWith(z: -height)),
-          ZLine.vector(bottomRight.copyWith(z: -height)),
+          ZMove.vector(bottomRight!),
+          ZLine.vector(bottomLeft!),
+          ZLine.vector(bottomLeft!.copyWith(z: -height)),
+          ZLine.vector(bottomRight!.copyWith(z: -height)),
         ],
-        front: (bottomLeft - bottomRight).cross(ZVector.only(z: height)),
+        front: (bottomLeft! - bottomRight!).cross(ZVector.only(z: height)),
 
         fill: true,
         stroke: 2,
@@ -164,12 +164,12 @@ class ZLineTop extends StatelessWidget {
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(bottomRight),
-          ZLine.vector(topRight),
-          ZLine.vector(topRight.copyWith(z: -height)),
-          ZLine.vector(bottomRight.copyWith(z: -height)),
+          ZMove.vector(bottomRight!),
+          ZLine.vector(topRight!),
+          ZLine.vector(topRight!.copyWith(z: -height)),
+          ZLine.vector(bottomRight!.copyWith(z: -height)),
         ],
-        front: (bottomRight - topRight).cross(ZVector.only(z: height)).unit(),
+        front: (bottomRight! - topRight!).cross(ZVector.only(z: height)).unit(),
         fill: true,
         stroke: 2,
         color: side,
@@ -189,15 +189,15 @@ class ZLineTop extends StatelessWidget {
 }
 
 class MiddleZLine extends StatelessWidget {
-  final ZVector translate;
-  final ZVector bottomLeft;
-  final ZVector bottomRight;
-  final ZVector topRight;
-  final ZVector topLeft;
-  final double z;
-  final Color front;
-  final Color inside;
-  final Color side;
+  final ZVector? translate;
+  final ZVector? bottomLeft;
+  final ZVector? bottomRight;
+  final ZVector? topRight;
+  final ZVector? topLeft;
+  final double? z;
+  final Color? front;
+  final Color? inside;
+  final Color? side;
 
   MiddleZLine(
       {this.translate,
@@ -216,22 +216,22 @@ class MiddleZLine extends StatelessWidget {
     final height = 4.0;
 
     final frontZShape = ZShape(path: [
-      ZMove.vector(bottomLeft),
-      ZLine.vector(bottomRight),
-      ZLine.vector(topRight),
-      ZLine.vector(topLeft),
+      ZMove.vector(bottomLeft!),
+      ZLine.vector(bottomRight!),
+      ZLine.vector(topRight!),
+      ZLine.vector(topLeft!),
     ], color: front, fill: true, stroke: 2);
 
     final topZShape = ZPositioned(
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(topRight),
-          ZLine.vector(topLeft),
-          ZLine.vector(topLeft.copyWith(z: -height)),
-          ZLine.vector(topRight.copyWith(z: -height)),
+          ZMove.vector(topRight!),
+          ZLine.vector(topLeft!),
+          ZLine.vector(topLeft!.copyWith(z: -height)),
+          ZLine.vector(topRight!.copyWith(z: -height)),
         ],
-        front: (topRight - topLeft).cross(ZVector.only(z: height)),
+        front: (topRight! - topLeft!).cross(ZVector.only(z: height)),
         fill: true,
         stroke: 2,
         color: side,
@@ -243,12 +243,12 @@ class MiddleZLine extends StatelessWidget {
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(bottomLeft),
-          ZLine.vector(topLeft),
-          ZLine.vector(topLeft.copyWith(z: -height)),
-          ZLine.vector(bottomLeft.copyWith(z: -height)),
+          ZMove.vector(bottomLeft!),
+          ZLine.vector(topLeft!),
+          ZLine.vector(topLeft!.copyWith(z: -height)),
+          ZLine.vector(bottomLeft!.copyWith(z: -height)),
         ],
-        front: (bottomLeft - topLeft).cross(ZVector.only(z: -height)),
+        front: (bottomLeft! - topLeft!).cross(ZVector.only(z: -height)),
         fill: true,
         stroke: 2,
         color: side,
@@ -260,12 +260,12 @@ class MiddleZLine extends StatelessWidget {
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(bottomRight),
-          ZLine.vector(bottomLeft),
-          ZLine.vector(bottomLeft.copyWith(z: -height)),
-          ZLine.vector(bottomRight.copyWith(z: -height)),
+          ZMove.vector(bottomRight!),
+          ZLine.vector(bottomLeft!),
+          ZLine.vector(bottomLeft!.copyWith(z: -height)),
+          ZLine.vector(bottomRight!.copyWith(z: -height)),
         ],
-        front: (bottomLeft - bottomRight).cross(ZVector.only(z: height)),
+        front: (bottomLeft! - bottomRight!).cross(ZVector.only(z: height)),
 
         fill: true,
         stroke: 2,
@@ -279,12 +279,12 @@ class MiddleZLine extends StatelessWidget {
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(bottomRight),
-          ZLine.vector(topRight),
-          ZLine.vector(topRight.copyWith(z: -height)),
-          ZLine.vector(bottomRight.copyWith(z: -height)),
+          ZMove.vector(bottomRight!),
+          ZLine.vector(topRight!),
+          ZLine.vector(topRight!.copyWith(z: -height)),
+          ZLine.vector(bottomRight!.copyWith(z: -height)),
         ],
-        front: (bottomRight - topRight).cross(ZVector.only(z: height)).unit(),
+        front: (bottomRight! - topRight!).cross(ZVector.only(z: height)).unit(),
         fill: true,
         stroke: 2,
         color: side,
@@ -304,17 +304,17 @@ class MiddleZLine extends StatelessWidget {
 }
 
 class BottomZLine extends StatelessWidget {
-  final ZVector translate;
-  final ZVector bottomLeft;
-  final ZVector bottomRight;
-  final ZVector topRight;
-  final ZVector topLeft;
-  final double z;
-  final Color front;
-  final Color inside;
-  final Color side;
-  final Color back;
-  final ZVector middleRight;
+  final ZVector? translate;
+  final ZVector? bottomLeft;
+  final ZVector? bottomRight;
+  final ZVector? topRight;
+  final ZVector? topLeft;
+  final double? z;
+  final Color? front;
+  final Color? inside;
+  final Color? side;
+  final Color? back;
+  final ZVector? middleRight;
 
   BottomZLine(
       {this.translate,
@@ -335,22 +335,22 @@ class BottomZLine extends StatelessWidget {
     final height = 4.0;
 
     final frontZShape = ZShape(path: [
-      ZMove.vector(bottomLeft),
-      ZLine.vector(bottomRight),
-      ZLine.vector(topRight),
-      ZLine.vector(topLeft),
+      ZMove.vector(bottomLeft!),
+      ZLine.vector(bottomRight!),
+      ZLine.vector(topRight!),
+      ZLine.vector(topLeft!),
     ], color: front, backfaceColor: back, fill: true, stroke: 2);
 
     final topZShape = ZPositioned(
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(topRight),
-          ZLine.vector(topLeft),
-          ZLine.vector(topLeft.copyWith(z: -height)),
-          ZLine.vector(topRight.copyWith(z: -height)),
+          ZMove.vector(topRight!),
+          ZLine.vector(topLeft!),
+          ZLine.vector(topLeft!.copyWith(z: -height)),
+          ZLine.vector(topRight!.copyWith(z: -height)),
         ],
-        front: (topRight - topLeft).cross(ZVector.only(z: height)),
+        front: (topRight! - topLeft!).cross(ZVector.only(z: height)),
         fill: true,
         stroke: 2,
         color: side,
@@ -362,12 +362,12 @@ class BottomZLine extends StatelessWidget {
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(bottomLeft),
-          ZLine.vector(topLeft),
-          ZLine.vector(topLeft.copyWith(z: -height)),
-          ZLine.vector(bottomLeft.copyWith(z: -height)),
+          ZMove.vector(bottomLeft!),
+          ZLine.vector(topLeft!),
+          ZLine.vector(topLeft!.copyWith(z: -height)),
+          ZLine.vector(bottomLeft!.copyWith(z: -height)),
         ],
-        front: (bottomLeft - topLeft).cross(ZVector.only(z: -height)),
+        front: (bottomLeft! - topLeft!).cross(ZVector.only(z: -height)),
         fill: true,
         stroke: 2,
         color: side,
@@ -379,12 +379,12 @@ class BottomZLine extends StatelessWidget {
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(bottomRight),
-          ZLine.vector(bottomLeft),
-          ZLine.vector(bottomLeft.copyWith(z: -height)),
-          ZLine.vector(bottomRight.copyWith(z: -height)),
+          ZMove.vector(bottomRight!),
+          ZLine.vector(bottomLeft!),
+          ZLine.vector(bottomLeft!.copyWith(z: -height)),
+          ZLine.vector(bottomRight!.copyWith(z: -height)),
         ],
-        front: (bottomLeft - bottomRight).cross(ZVector.only(z: height)),
+        front: (bottomLeft! - bottomRight!).cross(ZVector.only(z: height)),
 
         fill: true,
         stroke: 2,
@@ -397,13 +397,13 @@ class BottomZLine extends StatelessWidget {
       translate: ZVector.only(z: -stroke),
       child: ZShape(
         path: [
-          ZMove.vector(bottomRight),
-          ZLine.vector(middleRight),
-          ZLine.vector(middleRight.copyWith(z: -height)),
-          ZLine.vector(bottomRight.copyWith(z: -height)),
+          ZMove.vector(bottomRight!),
+          ZLine.vector(middleRight!),
+          ZLine.vector(middleRight!.copyWith(z: -height)),
+          ZLine.vector(bottomRight!.copyWith(z: -height)),
         ],
         front:
-            (bottomRight - middleRight).cross(ZVector.only(z: height)).unit(),
+            (bottomRight! - middleRight!).cross(ZVector.only(z: height)).unit(),
         fill: true,
         stroke: 2,
         color: side,
@@ -415,12 +415,12 @@ class BottomZLine extends StatelessWidget {
       translate: ZVector.only(z: -stroke - height * 0.1),
       child: ZShape(
         path: [
-          ZMove.vector(middleRight),
-          ZLine.vector(topLeft),
-          ZLine.vector(topLeft.copyWith(z: -height * 0.9)),
-          ZLine.vector(middleRight.copyWith(z: -height * 0.9)),
+          ZMove.vector(middleRight!),
+          ZLine.vector(topLeft!),
+          ZLine.vector(topLeft!.copyWith(z: -height * 0.9)),
+          ZLine.vector(middleRight!.copyWith(z: -height * 0.9)),
         ],
-        front: (topLeft - middleRight).cross(ZVector.only(z: height)).unit(),
+        front: (topLeft! - middleRight!).cross(ZVector.only(z: height)).unit(),
         fill: true,
         stroke: 2,
         color: inside,

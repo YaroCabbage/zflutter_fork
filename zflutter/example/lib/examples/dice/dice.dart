@@ -10,9 +10,9 @@ class Dices extends StatefulWidget {
 
 class _DicesState extends State<Dices>
     with SingleTickerProviderStateMixin {
-  AnimationController animationController;
+  late AnimationController animationController;
 
-  SpringSimulation simulation;
+  late SpringSimulation simulation;
   int num = 1;
   int num2 = 1;
   ZVector rotation = ZVector.zero;
@@ -149,9 +149,9 @@ ZVector getRotation(int num) {
 
 class Face extends StatelessWidget {
   final double zoom;
-  final Color color;
+  final Color? color;
 
-  const Face({Key key, this.zoom = 1, this.color}) : super(key: key);
+  const Face({Key? key, this.zoom = 1, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -206,7 +206,7 @@ class Dice extends StatelessWidget {
   final Color color;
   final double zoom;
 
-  const Dice({Key key, this.zoom = 1, this.color = const Color(0xffF23726)})
+  const Dice({Key? key, this.zoom = 1, this.color = const Color(0xffF23726)})
       : super(key: key);
 
   @override

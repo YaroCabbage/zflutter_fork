@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:zflutter/zflutter.dart';
 
 class ZBoxToBoxAdapter extends StatelessWidget {
-  final double width;
-  final double height;
-  final double depth;
+  final double? width;
+  final double? height;
+  final double? depth;
 
   final double stroke;
   final bool fill;
 
-  final Color color;
-  final bool visible;
+  final Color? color;
+  final bool? visible;
 
-  final Widget frontChild;
-  final Widget rearChild;
-  final Widget leftChild;
-  final Widget rightChild;
-  final Widget topChild;
-  final Widget bottomChild;
+  final Widget? frontChild;
+  final Widget? rearChild;
+  final Widget? leftChild;
+  final Widget? rightChild;
+  final Widget? topChild;
+  final Widget? bottomChild;
 
   //var front = ZVector.only(z: 1);
   ZBoxToBoxAdapter({
@@ -38,7 +38,7 @@ class ZBoxToBoxAdapter extends StatelessWidget {
   });
 
   Widget get frontFace => ZPositioned(
-        translate: ZVector.only(z: depth / 2),
+        translate: ZVector.only(z: depth! / 2),
         child: ZToBoxAdapter(
           width: width,
           height: height,
@@ -47,7 +47,7 @@ class ZBoxToBoxAdapter extends StatelessWidget {
       );
 
   Widget get rearFace => ZPositioned(
-        translate: ZVector.only(z: -depth / 2),
+        translate: ZVector.only(z: -depth! / 2),
         rotate: ZVector.only(y: tau / 2),
         child: ZToBoxAdapter(
           width: width,
@@ -57,7 +57,7 @@ class ZBoxToBoxAdapter extends StatelessWidget {
       );
 
   Widget get leftFace => ZPositioned(
-        translate: ZVector.only(x: -width / 2),
+        translate: ZVector.only(x: -width! / 2),
         rotate: ZVector.only(y: -tau / 4),
         child: ZToBoxAdapter(
           width: width,
@@ -67,7 +67,7 @@ class ZBoxToBoxAdapter extends StatelessWidget {
       );
 
   Widget get rightFace => ZPositioned(
-        translate: ZVector.only(x: width / 2),
+        translate: ZVector.only(x: width! / 2),
         rotate: ZVector.only(y: tau / 4),
         child: ZToBoxAdapter(
           width: width,
@@ -77,7 +77,7 @@ class ZBoxToBoxAdapter extends StatelessWidget {
       );
 
   Widget get topFace => ZPositioned(
-        translate: ZVector.only(y: -height / 2),
+        translate: ZVector.only(y: -height! / 2),
         rotate: ZVector.only(x: -tau / 4),
         child: ZToBoxAdapter(
           width: width,
@@ -87,7 +87,7 @@ class ZBoxToBoxAdapter extends StatelessWidget {
       );
 
   Widget get bottomFace => ZPositioned(
-        translate: ZVector.only(y: height / 2),
+        translate: ZVector.only(y: height! / 2),
         rotate: ZVector.only(x: tau / 4),
         child: ZToBoxAdapter(
           width: width,

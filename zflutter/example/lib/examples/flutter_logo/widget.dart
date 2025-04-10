@@ -13,9 +13,9 @@ class FlutterAnimation extends StatefulWidget {
 
 class _FlutterAnimationState extends State<FlutterAnimation>
     with TickerProviderStateMixin {
-  AnimationController animationController;
+  late AnimationController animationController;
 
-  AnimationController dashController;
+  AnimationController? dashController;
 
   @override
   void initState() {
@@ -84,17 +84,17 @@ class _FlutterAnimationState extends State<FlutterAnimation>
               final progress = startAnim.value - endAnim.value;
               final rotationAnimation = (-tau / 2) * (progress);
               Tween(begin: 0.0, end: -tau / 2).evaluate(curved);
-              final zoom = lerpDouble(0.8, 1.6, progress);
+              final zoom = lerpDouble(0.8, 1.6, progress)!;
               final xrotate = -(0.5 - (progress - 0.5).abs()) * tau / 8;
               final dash = dashAnimations.fold(
-                  0, (previousValue, element) => previousValue + element.value);
+                  0, (dynamic previousValue, element) => previousValue + element.value);
 
               return ZIllustration(
                 zoom: zoom,
                 children: [
                   ZPositioned(
                     rotate: ZVector.only(y: rotationAnimation, x: xrotate) +
-                        controller.rotate,
+                        controller!.rotate,
                     translate: ZVector.only(y: 40),
                     child: ZGroup(
                       sortMode: SortMode.update,
@@ -114,7 +114,7 @@ class _FlutterAnimationState extends State<FlutterAnimation>
                             rotate: ZVector.only(
                                 y: tau / 2 + tau / 40, x: -tau / 40),
                             translate: ZVector.only(z: -50, y: 70, x: 40),
-                            child: Dash(flight: 1 - dash),
+                            child: Dash(flight: 1 - dash as double?),
                           ),
                           ZPositioned(
                             rotate: ZVector.only(
@@ -128,7 +128,7 @@ class _FlutterAnimationState extends State<FlutterAnimation>
                             rotate: ZVector.only(
                                 y: tau / 2 + tau / 40, x: -tau / 30),
                             translate: ZVector.only(z: -50, y: -45, x: -75),
-                            child: Dash(flight: 1 - dash),
+                            child: Dash(flight: 1 - dash as double?),
                           ),
                           ZPositioned(
                             rotate: ZVector.only(y: tau / 2 + tau / 45),
@@ -138,7 +138,7 @@ class _FlutterAnimationState extends State<FlutterAnimation>
                           ZPositioned(
                             rotate: ZVector.only(y: tau / 2),
                             translate: ZVector.only(z: -50, y: -130, x: 5),
-                            child: Dash(flight: 1 - dash),
+                            child: Dash(flight: 1 - dash as double?),
                           ),
                           ZPositioned(
                             rotate: ZVector.only(

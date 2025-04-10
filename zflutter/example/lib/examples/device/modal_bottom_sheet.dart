@@ -98,9 +98,9 @@ class _ModalBottomSheetExampleState extends State<ModalBottomSheetExample> {
 }
 
 class Close extends StatefulWidget {
-  final Widget child;
+  final Widget? child;
 
-  const Close({Key key, this.child}) : super(key: key);
+  const Close({Key? key, this.child}) : super(key: key);
   @override
   State<StatefulWidget> createState() => CloseState();
 }
@@ -116,6 +116,6 @@ class CloseState extends State<Close> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.child;
+    return widget.child!;
   }
 }

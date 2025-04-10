@@ -19,16 +19,16 @@ import 'on_the_go.dart';
 class Example {
   final String title;
   final String route;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final WidgetBuilder builder;
-  final FlutterLogoColor logoStyle;
+  final FlutterLogoColor? logoStyle;
 
   Example({
     this.logoStyle,
-    @required this.title,
-    @required this.route,
+    required this.title,
+    required this.route,
     this.backgroundColor,
-    @required this.builder,
+    required this.builder,
   });
 }
 
@@ -48,7 +48,7 @@ class Examples {
         zoom: 1.5,
         children: [
           ZPositioned(
-            rotate: controller.rotate,
+            rotate: controller!.rotate,
             child: Device(
               child: CupertinoTabView(
                 onGenerateRoute: (settings) {
@@ -526,9 +526,9 @@ class BasicSamples {
 }
 
 class Template extends StatelessWidget {
-  final List<Widget> Function() childrenBuilder;
+  final List<Widget> Function()? childrenBuilder;
 
-  const Template({Key key, this.childrenBuilder}) : super(key: key);
+  const Template({Key? key, this.childrenBuilder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -540,9 +540,9 @@ class Template extends StatelessWidget {
             zoom: 3,
             children: [
               ZPositioned(
-                rotate: controller.rotate + rotate,
+                rotate: controller!.rotate + rotate,
                 child: ZGroup(
-                  children: childrenBuilder(),
+                  children: childrenBuilder!(),
                 ),
               )
             ],

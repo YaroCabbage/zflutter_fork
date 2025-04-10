@@ -9,14 +9,14 @@ const Color garnet = Color(0xffCC2255);
 const Color eggplant = Color(0xff663366);
 
 class Hand extends StatelessWidget {
-  final ZVector translate;
+  final ZVector? translate;
 
-  const Hand({Key key, this.translate}) : super(key: key);
+  const Hand({Key? key, this.translate}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ZPositioned(
-      translate: translate,
+      translate: translate!,
       child: ZShape(stroke: 6, color: gold),
     );
   }
@@ -24,16 +24,16 @@ class Hand extends StatelessWidget {
 
 class Arm extends StatelessWidget {
   final double armSize = 6;
-  final ZVector translate;
-  final ZVector rotate;
+  final ZVector? translate;
+  final ZVector? rotate;
 
-  const Arm({Key key, this.translate, this.rotate}) : super(key: key);
+  const Arm({Key? key, this.translate, this.rotate}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ZPositioned(
-      translate: translate,
-      rotate: rotate,
+      translate: translate!,
+      rotate: rotate!,
       child: ZGroup(children: [
         ZShape(color: eggplant, stroke: 4, path: [
           ZMove.vector(ZVector.only(y: 0)),
@@ -76,14 +76,14 @@ class Arm extends StatelessWidget {
 }
 
 class Eye extends StatelessWidget {
-  final ZVector translate;
+  final ZVector? translate;
 
-  const Eye({Key key, this.translate}) : super(key: key);
+  const Eye({Key? key, this.translate}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ZPositioned(
-      translate: translate,
+      translate: translate!,
       rotate: ZVector.only(z: -tau / 4),
       child: ZCircle(
         diameter: 2,
@@ -130,10 +130,10 @@ class Head extends StatelessWidget {
 }
 
 class Leg extends StatelessWidget {
-  final double xTranslation;
-  final double rotation;
+  final double? xTranslation;
+  final double? rotation;
 
-  const Leg({Key key, this.xTranslation, this.rotation}) : super(key: key);
+  const Leg({Key? key, this.xTranslation, this.rotation}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -218,7 +218,7 @@ class Body extends StatelessWidget {
 
       return ZIllustration(zoom: 10, children: [
         ZPositioned(
-            rotate: controller.rotate.copy(), //..y += -TAU / 8,
+            rotate: controller!.rotate.copy(), //..y += -TAU / 8,
             child: hips)
       ]);
     });

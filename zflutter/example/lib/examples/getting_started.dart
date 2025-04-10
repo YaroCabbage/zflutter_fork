@@ -48,7 +48,7 @@ class GettingStartedSamples {
         return ZIllustration(
           children: [
             ZPositioned(
-              rotate: controller.rotate,
+              rotate: controller!.rotate,
               child: ZCircle(
                 diameter: 80,
                 stroke: 20,
@@ -70,7 +70,7 @@ class GettingStartedSamples {
           zoom: 4,
           children: [
             ZPositioned(
-              rotate: controller.rotate,
+              rotate: controller!.rotate,
               child: ZToBoxAdapter(
                 height: 80,
                 width: 80,

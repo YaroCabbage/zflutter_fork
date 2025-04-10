@@ -7,7 +7,7 @@ class ZFighting extends StatelessWidget {
     return ZDragDetector(
       builder: (context, rotate) => ZIllustration(zoom: 2, children: [
         ZPositioned(
-            rotate: rotate.rotate,
+            rotate: rotate!.rotate,
             child: ZGroup(
               children: [
                 ZRect(
@@ -29,7 +29,7 @@ class ZFighting extends StatelessWidget {
 class _Group extends StatelessWidget {
   final isFixed;
 
-  const _Group({Key key, this.isFixed}) : super(key: key);
+  const _Group({Key? key, this.isFixed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

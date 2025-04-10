@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:zflutter/zflutter.dart';
 
 class Device extends StatelessWidget {
-  final Widget child;
+  final Widget? child;
 
-  const Device({Key key, this.child}) : super(key: key);
+  const Device({Key? key, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -179,9 +179,9 @@ class Device extends StatelessWidget {
 }
 
 class Frame extends StatelessWidget {
-  final Widget app;
+  final Widget? app;
 
-  const Frame({Key key, this.app}) : super(key: key);
+  const Frame({Key? key, this.app}) : super(key: key);
 
   static TransitionBuilder get builder => (context, app) => Frame(app: app);
 
@@ -207,7 +207,7 @@ class Frame extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
-                    app,
+                    app!,
                     Positioned(
                       top: 0,
                       left: 0,
@@ -237,15 +237,15 @@ class Frame extends StatelessWidget {
 }
 
 class _StatusBar extends StatelessWidget {
-  final FrameThemeData theme;
+  final FrameThemeData? theme;
 
-  const _StatusBar({Key key, this.theme}) : super(key: key);
+  const _StatusBar({Key? key, this.theme}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final date = DateTime.now();
     return Theme(
-      data: ThemeData(brightness: theme.statusBarBrightness),
+      data: ThemeData(brightness: theme!.statusBarBrightness),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -254,7 +254,7 @@ class _StatusBar extends StatelessWidget {
               child: Text(
                 '${date.hour}:${date.minute}',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold, color: theme.statusBarColor),
+                    fontWeight: FontWeight.bold, color: theme!.statusBarColor),
               )),
           Padding(
             padding: EdgeInsets.only(right: 18),
@@ -283,7 +283,7 @@ class FrameThemeData {
   final Brightness statusBarBrightness;
 
   // const FrameThemeData({this.frameColor, this.statusBarBrightness});
-  factory FrameThemeData({Color frameColor, Brightness statusBarBrightness}) {
+  factory FrameThemeData({Color? frameColor, Brightness? statusBarBrightness}) {
     frameColor ??= Colors.black;
     statusBarBrightness ??= Brightness.light;
     return FrameThemeData.raw(
@@ -293,8 +293,8 @@ class FrameThemeData {
   }
 
   const FrameThemeData.raw({
-    this.frameColor,
-    this.statusBarBrightness,
+    required this.frameColor,
+    required this.statusBarBrightness,
   })  : assert(frameColor != null),
         assert(statusBarBrightness != null);
 

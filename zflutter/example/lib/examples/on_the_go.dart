@@ -31,7 +31,7 @@ class OnTheGo extends StatefulWidget {
 }
 
 class _OnTheGoState extends State<OnTheGo> with TickerProviderStateMixin {
-  AnimationController animationController;
+  late AnimationController animationController;
 
   @override
   void initState() {
@@ -56,9 +56,9 @@ class _OnTheGoState extends State<OnTheGo> with TickerProviderStateMixin {
               animation: animationController,
               builder: (context, _) => ZIllustration(zoom: 5, children: [
                     ZPositioned(
-                      rotate: controller.rotate +
+                      rotate: controller!.rotate +
                           ZVector.only(
-                              y: -tau * curved.value + sceneStartRotation.y),
+                              y: -tau * curved.value + sceneStartRotation.y!),
                       child: ZGroup(
                         children: [
                           ZPositioned(
@@ -114,7 +114,7 @@ class Dude extends StatelessWidget {
             ZPositioned(
                 translate: ZVector.only(x: hipX),
                 child: rightThigh(beigeDark, beigeLight,
-                    legRotation: ZVector.only(x: -tau / 4 - hipsRotation.x),
+                    legRotation: ZVector.only(x: -tau / 4 - hipsRotation.x!),
                     lineOposite: true)),
             ZShape(
               path: [
@@ -139,7 +139,7 @@ class Dude extends StatelessWidget {
   }
 
   Widget rightThigh(Color thighColor, Color lineColor,
-      {ZVector legRotation, bool lineOposite = false}) {
+      {required ZVector legRotation, bool lineOposite = false}) {
     Widget shoe(bool isRight) {
       final shoelace = ZShape(
         path: [
@@ -150,7 +150,7 @@ class Dude extends StatelessWidget {
         stroke: 1,
       );
 
-      var shoeAngleX = isRight ? -tau / 16 : -hipsRotation.x;
+      var shoeAngleX = isRight ? -tau / 16 : -hipsRotation.x!;
       return ZPositioned(
         translate: ZVector.only(y: 6, z: 4),
         rotate: ZVector.only(x: -tau / 4 - shoeAngleX),
@@ -1149,7 +1149,7 @@ class Cloud extends StatelessWidget {
 
     return ZPositioned(
       translate: ZVector.only(x: 34, y: -26, z: -20),
-      rotate: ZVector.only(y: -sceneStartRotation.y),
+      rotate: ZVector.only(y: -sceneStartRotation.y!),
       child: ZGroup(
         children: [
           // big puff

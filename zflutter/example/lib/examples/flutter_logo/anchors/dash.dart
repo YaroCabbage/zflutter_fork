@@ -12,7 +12,7 @@ final Color green = Color(0xff71d3c7);
 final Color black = Color(0xff000000);
 
 class Dash extends StatelessWidget {
-  final double flight;
+  final double? flight;
 
   Dash({this.flight});
 
@@ -56,13 +56,13 @@ class Dash extends StatelessWidget {
           ZPositioned(
             translate: ZVector.only(x: -23, z: -2),
             rotate:
-                ZVector.only(y: tau / 4 - tau / 40 - flight / 12, x: -tau / 12),
+                ZVector.only(y: tau / 4 - tau / 40 - flight! / 12, x: -tau / 12),
             child: wing(),
           ),
           ZPositioned(
             translate: ZVector.only(x: 23, z: -2),
             rotate:
-                ZVector.only(y: tau / 4 + tau / 40 + flight / 12, x: -tau / 12),
+                ZVector.only(y: tau / 4 + tau / 40 + flight! / 12, x: -tau / 12),
             child: wing(),
           ),
           ZGroup(
@@ -148,7 +148,7 @@ ZGroup hair() => ZGroup(
       ],
     );
 
-ZGroup eye({ZVector translate}) {
+ZGroup eye({required ZVector translate}) {
   return ZGroup(sortMode: SortMode.stack, children: [
     ZPositioned(
       translate: translate,

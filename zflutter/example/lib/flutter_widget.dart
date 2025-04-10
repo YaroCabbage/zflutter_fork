@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 class MadeWithFlutterContainer extends StatelessWidget {
-  final Widget child;
+  final Widget? child;
   final FlutterLogoColor logoStyle;
 
   const MadeWithFlutterContainer(
-      {Key key, this.child, this.logoStyle = FlutterLogoColor.original})
+      {Key? key, this.child, this.logoStyle = FlutterLogoColor.original})
       : super(key: key);
 
   @override
@@ -13,11 +13,11 @@ class MadeWithFlutterContainer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(child: child),
+        Expanded(child: child!),
         Align(
           alignment: Alignment.center,
           child: Image(
-            image: logoStyle.image(),
+            image: logoStyle.image()!,
             height: 50,
           ),
         ),
@@ -34,7 +34,7 @@ enum FlutterLogoColor {
 }
 
 extension FlutterLogoColorImage on FlutterLogoColor {
-  ImageProvider image() {
+  ImageProvider? image() {
     switch (this) {
       case FlutterLogoColor.original:
         return AssetImage(
