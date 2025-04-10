@@ -1,9 +1,8 @@
 import 'dart:ui';
 
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class PhotoShareBottomSheet extends StatelessWidget {
   final ScrollController scrollController;
@@ -353,10 +352,10 @@ final people = [
   Item('Jaime Blasco', 'assets/jaimeblasco.jpeg'),
   Item('Mya Johnston', 'assets/person1.jpeg'),
   // https://images.unsplash.com/photo-1520813792240-56fc4a3765a7'
-  Item('Maxime Nicholls',
-      'assets/person4.jpeg'), //https://images.unsplash.com/photo-1568707043650-eb03f2536825'
-  Item('Susanna Thorne',
-      'assets/person2.jpeg'), //https://images.unsplash.com/photo-1520719627573-5e2c1a6610f0
+  Item('Maxime Nicholls', 'assets/person4.jpeg'),
+  //https://images.unsplash.com/photo-1568707043650-eb03f2536825'
+  Item('Susanna Thorne', 'assets/person2.jpeg'),
+  //https://images.unsplash.com/photo-1520719627573-5e2c1a6610f0
   Item('Jarod Aguilar', 'assets/person3.jpeg')
   //https://images.unsplash.com/photo-1547106634-56dcd53ae883
 ];
@@ -516,7 +515,7 @@ class _SliverGroupElement extends RenderObjectElement {
   }
 
   @override
-  void insertChildRenderObject(RenderObject child, int slot) {
+  void insertRenderObjectChild(RenderObject child, int slot) {
     final _RenderSliverGroup renderObject = this.renderObject;
     if (slot == 0) renderObject.decoration = child;
     if (slot == 1) renderObject.foregroundDecoration = child;
@@ -525,12 +524,13 @@ class _SliverGroupElement extends RenderObjectElement {
   }
 
   @override
-  void moveChildRenderObject(RenderObject child, slot) {
+  void moveRenderObjectChild(
+      RenderObject child, Object oldSlot, Object newSlot) {
     assert(false);
   }
 
   @override
-  void removeChildRenderObject(RenderObject child) {
+  void removeRenderObjectChild(RenderObject child, Object slot) {
     final _RenderSliverGroup renderObject = this.renderObject;
     if (renderObject.decoration == child) renderObject.decoration = null;
     if (renderObject.foregroundDecoration == child)

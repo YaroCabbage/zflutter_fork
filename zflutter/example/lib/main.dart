@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zflutter/zflutter.dart';
 
 import 'examples/examples.dart';
 import 'examples/getting_started.dart';
@@ -108,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text(
                       item.title,
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     )),
                   )
                 ],
